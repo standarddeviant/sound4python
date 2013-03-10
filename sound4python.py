@@ -23,7 +23,6 @@ def sound(itr,samprate=16000,autoscale=True,output=False):
     try: import numpy as np; foundNumpy=True;
     except: 
         foundNumpy=False;
-        return None
 
     #for now, assume 1-D iterable
     mult = 1
