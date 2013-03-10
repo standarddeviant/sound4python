@@ -4,7 +4,7 @@ sound4python
 A simple wrapper to play sounds from Python.
 
 Current dependencies:
-Python 2.6 or greater
+Python 2.6 or greater and
 sox
 
 This is a very simple wrapper to play audio by wrapping the sox binary.  Currently, audio playback of a 1D NumPy array and a list of numbers is supported.  This wrapper, in conjunction with a wrapped audio binary, fills a hole in the NumPy/SciPy suite to enable playback of a NumPy vector.  With minimal work, it also can play audio from a list/tuple of numbers.  This fact is why the project is called "sound4python" and not "sound4numpy".
