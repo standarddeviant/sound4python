@@ -22,7 +22,7 @@ This version wraps the original code into a class that holds all information abo
 Basic usage
 ~~~~~~~~~~~
 
-Loading wav file and starting playback::
+Loading wav file and starting playback:
 
     wavPath = 'some.wav'
     s4p = Sound4Python()
@@ -30,22 +30,22 @@ Loading wav file and starting playback::
 
     s4p.playInThread()
     
-Pause running playback::
+Pause running playback:
 
     s4p.pause()
     
-Resume playback from paused position::
+Resume playback from paused position:
 
     s4p.playInThread()
     
-Stop playback (reseting position to beginning)::
+Stop playback (reseting position to beginning):
 
     s4p.stop()
     
     
-Seek in wavfile (seconds)::
+Seek in wavfile (seconds):
 
     s4p.seek(sec)
 
     
-A word of warning:  *none of the internal operations are explictely threadsafe**
+A word of warning:  *none of the internal operations are explictely threadsafe**. I intend to make it saver later.
