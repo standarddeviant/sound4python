@@ -20,7 +20,7 @@ Usage
 This version wraps the original code into a class that holds all information about the file to be played back. The playback is done in a separate thread. This allows to play, pause, stop and seek comfortably.
 
 Basic usage
-~~~~~~~~~~~
+###########
 
 Loading wav file and starting playback:
 
@@ -48,4 +48,4 @@ Seek in wavfile (seconds):
     s4p.seek(sec)
 
     
-A word of warning:  *none of the internal operations are explictely threadsafe**. I intend to make it saver later.
+A word of warning:  **none of the internal operations are explictely threadsafe**. I intend to make it saver later.
