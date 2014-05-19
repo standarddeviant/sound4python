@@ -36,7 +36,7 @@ Pause running playback:
     
 Resume playback from paused position:
 
-    s4p.playInThread()
+    s4p.play()
     
 Stop playback (reseting position to beginning):
 
