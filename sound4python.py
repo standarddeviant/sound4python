@@ -14,6 +14,8 @@ class Sound4Python(object):
     def __init__(self):
         self.seekSec = 0
         self.FNULL = open(os.devnull,'w')
+        self.playing = False
+        self.sec = 0
         
     def launchWithoutConsole(self, args,output=False):
         """Launches args windowless and waits until finished"""
@@ -73,7 +75,7 @@ class Sound4Python(object):
             return None
     
         
-    def play(self):                 
+    def _play(self):
         #configure the file object, memFile, as if it has just been opened for reading
         self.memFile.seek(0)
         try:
@@ -100,13 +102,17 @@ class Sound4Python(object):
 
     def seek(self, sec):
         sr = self.wav[0]
+        self.sec = sec
         idx = np.floor(sec * sr)
         if idx > self.wav[1].shape[0]:
             raise ValueError("tried to seek outside of wav length")
             
         self.seekSec = sec
-            
-        self.createMemfile(self.wav[1][idx:,0], self.wav[0]) 
+
+        if len(self.wav[1].shape) == 1:
+            self.createMemfile(self.wav[1][idx:], self.wav[0])
+        else:
+            self.createMemfile(self.wav[1][idx:,0], self.wav[0])
         
         
     def loadWav(self, wavPath=None):
@@ -115,10 +121,20 @@ class Sound4Python(object):
             
         self.wav = scipy.io.wavfile.read(self.wavPath)
         self.seekSec = 0
-        self.createMemfile(self.wav[1][:,0], self.wav[0]) 
+        if len(self.wav[1].shape) == 1:
+            self.createMemfile(self.wav[1], self.wav[0])
+        else:
+            self.createMemfile(self.wav[1][:,0], self.wav[0])
+
+        self.sec = 0
+
         
         
-    def playInThread(self):
+    def play(self):
+        if self.playing:
+            return
+
+        self.playing = True
         self.wt = Sound4PythonThread(self)
         self.wt.Run()        
         
@@ -135,12 +151,14 @@ class Sound4Python(object):
     def stop(self):
         self.terminateProcess()
         self.seek(0)
+        self.playing = False
         
     def pause(self):
         self.stopTime = dt.datetime.now()
         self.terminateProcess()
         secDiff = (self.stopTime - self.startTime).total_seconds()
-        self.seek(secDiff)
+        self.seek(self.sec + secDiff)
+        self.playing = False
         
         
 class Sound4PythonThread(threading.Thread):    
@@ -149,7 +167,7 @@ class Sound4PythonThread(threading.Thread):
         self.parent = parent
     
     def run(self):
-        self.parent.play()
+        self.parent._play()
 
     def Run(self):
         self.start()
