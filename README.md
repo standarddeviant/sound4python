@@ -28,7 +28,7 @@ Loading wav file and starting playback:
     s4p = Sound4Python()
     s4p.loadWav(wavPath)
 
-    s4p.playInThread()
+    s4p.play()
     
 Pause running playback:
 
