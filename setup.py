@@ -14,7 +14,7 @@ setup(
     author = "Peter Rennert, dave.crist@gmail.com",
     author_email = "p.rennert@cs.ucl.ac.uk, dave.crist@gmail.com",
     description = ("comfortable playback of wav files"),
-    packages=find_packages(),
+    packages=["sound4python"],
     license = read('LICENSE.txt'),
     keywords = "wav",
     url = "https://github.com/groakat/sound4python",
