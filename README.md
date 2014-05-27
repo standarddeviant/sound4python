@@ -24,8 +24,9 @@ Basic usage
 
 Loading wav file and starting playback:
 
+    from sound4python import sound4python as S4P
     wavPath = 'some.wav'
-    s4p = Sound4Python()
+    s4p = S4P.Sound4Python()
     s4p.loadWav(wavPath)
 
     s4p.play()
