@@ -50,3 +50,23 @@ Seek in wavfile (seconds):
 
     
 A word of warning:  **none of the internal operations are explictely threadsafe**. I intend to make it saver later.
+
+
+Installing Sox on Windows
+=========================
+
+Download sox for windows from sourceforge
+
+http://sourceforge.net/projects/sox/files/sox/
+
+Run the installer.
+
+Now sox is installed, but you need to add its installation folder to the windows PATH to be able to use `play.exe` and `sox.exe` from the terminal and python:
+
+Open the system settings panel (press WIN+PAUSE) -> Advanced system settings -> Environment Variables 
+Then add the installation path (something like `C:\Program Files (x86)\sox-14-4-x`) to the PATH of either the user or the system.
+
+
+
+
+
