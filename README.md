@@ -14,3 +14,59 @@ The wrapper works by creating a wave file, and then playing that wave file via a
 This wrapper is released under a permissive license, though sox is released under a combination of GPL and LGPL depending upon the parts used.  I believe sound4python is wrapping a GPL portion of sox.  A different audio player could be used in place of sox fairly easily, but sox was chosen given it's relatively easy installation on Windows, Linux, and OS X.  See LICENSE.md for License for actual license.
 
 
+Usage
+=====
+
+This version wraps the original code into a class that holds all information about the file to be played back. The playback is done in a separate thread. This allows to play, pause, stop and seek comfortably.
+
+Basic usage
+###########
+
+Loading wav file and starting playback:
+
+    from sound4python import sound4python as S4P
+    wavPath = 'some.wav'
+    s4p = S4P.Sound4Python()
+    s4p.loadWav(wavPath)
+
+    s4p.play()
+    
+Pause running playback:
+
+    s4p.pause()
+    
+Resume playback from paused position:
+
+    s4p.play()
+    
+Stop playback (reseting position to beginning):
+
+    s4p.stop()
+    
+    
+Seek in wavfile (seconds):
+
+    s4p.seek(sec)
+
+    
+A word of warning:  **none of the internal operations are explictely threadsafe**. I intend to make it saver later.
+
+
+Installing Sox on Windows
+=========================
+
+Download sox for windows from sourceforge
+
+http://sourceforge.net/projects/sox/files/sox/
+
+Run the installer.
+
+Now sox is installed, but you need to add its installation folder to the windows PATH to be able to use `play.exe` and `sox.exe` from the terminal and python:
+
+Open the system settings panel (press WIN+PAUSE) -> Advanced system settings -> Environment Variables 
+Then add the installation path (something like `C:\Program Files (x86)\sox-14-4-x`) to the PATH of either the user or the system.
+
+
+
+
+
